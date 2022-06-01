@@ -111,5 +111,7 @@ for plans in plans:
 
 
 
-
+# 리스트 join
+alpha = ['a', 'b', 'c'] 
+print(''.join(alpha)) ## abc
 
