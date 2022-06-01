@@ -86,17 +86,28 @@ print(lcm(21, 14)) # 최소 공배수 (LCM) 계산 -> 42
 
 
 
-# 방향 벡터
-## 동, 북, 서, 남
-dx = [0, -1, 0, 1]
-dy = [1, 0, -1, 0]
+# 방향 벡터 (간단ver)
+n = 5
+x, y = 1, 1
+plans = ['R', 'R', 'R', 'U', 'D', 'D']
 
-## 다음 위치
-for i in range(4):
-  nx = x + dx[i]
-  ny = y + dy[i]
-  
+dx = [0, 0, -1, 1]
+dy = [-1, 1, 0, 0]
+move_types = ['L', 'R', 'U', 'D']
 
+## 이동 계획 확인
+for plans in plans:
+    ## 이동 후 좌표 구하기
+    for i in range(len(move_types)):
+        if plans == move_types[i]:
+            nx = x + dx[i]
+            ny = y + dy[i]
+    
+    ## 공간 벗어나는 경우 무시
+    if nx < 1 or ny < 1 or nx > n or ny > n:
+        continue
+    
+    x, y = nx, ny
 
 
 
