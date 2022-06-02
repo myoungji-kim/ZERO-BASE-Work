@@ -115,3 +115,38 @@ for plans in plans:
 alpha = ['a', 'b', 'c'] 
 print(''.join(alpha)) ## abc
 
+
+
+# isalpha
+## 문자로 구성되어 있는지 확인 (숫자, 공백 안 됨)
+ex1 = 'A'
+print(ex1.isalpha()) ## true
+
+
+
+# isdigit
+## 숫자인지 확인
+ex1 = '123456'
+print(ex1.isdigit()) ## true
+
+
+# isalnum
+## 알파벳 또는 숫자인지 확인
+ex1 = 'Hello3'
+print(ex.isalnum()) ## true
+
+
+
+# 문자열 나누기 (split)
+Example_String = "Hello This is ddingji"
+Split_Str = Example_String.split()
+print(Split_Str) ## ['Hello', 'This', 'is', 'ddingji']
+
+# split 횟수 지정 (maxsplit)
+Examp = "V1-V2-V3-V4"
+x = Examp.split("-", 1)
+print(x) ## ['V1', 'V2#V3#V4']
+
+
+
+
