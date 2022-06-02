@@ -164,3 +164,7 @@ print(eval(S)) ## 9
 
 
 
+# replace (문자열 대체하기)
+ex1 = '가+나+다+라'
+ex1.replace('+', '') ## A를 B로 바꾼다
+
