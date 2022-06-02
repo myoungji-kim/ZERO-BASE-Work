@@ -168,3 +168,18 @@ print(eval(S)) ## 9
 ex1 = '가+나+다+라'
 ex1.replace('+', '') ## A를 B로 바꾼다
 
+
+
+# 우선순위 힙큐 (heapq)
+import heapq
+Q = []
+heapq.heappush(Q, 3)
+heapq.heappush(Q, 10)
+heapq.heappush(Q, 5)
+heapq.heappush(Q, 2)
+print(Q) # [2, 3, 5, 10]
+print(Q[0]) # 2
+print(Q[1]) # 3
+
+
+
