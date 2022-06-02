@@ -149,4 +149,9 @@ print(x) ## ['V1', 'V2#V3#V4']
 
 
 
-
+# 특정 키 값을 기준으로 정렬하기 (lambda)
+times = [list(map(int, stdin.readline().split())) for i in range(N)]
+times = sorted(times, key=lambda times: times[0])
+times = sorted(times, key=lambda times: times[1])
+## [[1, 4], [3, 5], [0, 6], [5, 7], [3, 8], [5, 9],
+##  [6, 10], [8, 11], [8, 12], [2, 13], [12, 14]]
