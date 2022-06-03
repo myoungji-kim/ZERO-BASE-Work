@@ -233,6 +233,32 @@ print(result) ## [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 
 
 
+# 힙 연습 문제(heap)
+from sys import stdin
+import heapq
+
+N = int(stdin.readline())
+heap = []
+
+for i in range(N):
+    nums = list(map(int, stdin.readline().split()))
+
+    if not heap:
+        for num in nums:
+            heapq.heappush(heap, num)
+    else:
+        for num in nums:
+            if heap[0] < num:
+                heapq.heappush(heap, num)
+                heapq.heappop(heap)
+                
+print(heap[0])
+
+
+
+
+
+
 # 다익스트라 베이직
 import heapq
 from sys import stdin
