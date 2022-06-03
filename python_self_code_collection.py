@@ -322,6 +322,25 @@ if distance >= INF:
     print("-1")
 else:
     print(distance)
+    
+    
+
+# 플로이드 워셜 문제 2
+from sys import stdin
+
+N = int(stdin.readline())
+graph = [list(map(int, stdin.readline().split())) for i in range(N)]
+
+for k in range(N):
+    for i in range(N):
+        for j in range(N):
+            if graph[i][k] == 1 and graph[k][j]:
+                graph[i][j] = 1
+
+for i in graph:
+    for j in i:
+        print(j, end=" ")
+    print()
 
     
     
@@ -411,5 +430,66 @@ dy = [0, 0, -1, 1]
 print(bfs(0, 0))
 
 
+
+
+# BFS - 양과 늑대 수 세기
+from sys import stdin
+
+# '.' (점)은 빈 필드
+# 글자 '#'는 울타리
+# 'o'는 양, 'v'는 늑대
+# 양의 수 > 늑대의 수 => 살아남음
+
+R, C = map(int, stdin.readline().split())
+
+visit = [[0] * C for i in range(R)]
+graph = [list(stdin.readline().rstrip()) for _ in range(R)]
+
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+queue = []
+
+
+def BFS(x, y):
+    global w, s
+
+    visit[x][y] = 1
+    queue.append([x, y])
+
+    while queue:
+        x, y = queue[0][0], queue[0][1]
+        del queue[0]
+
+        if graph[x][y] == 'v':
+            w += 1
+        elif graph[x][y] == 'o':
+            s += 1
+
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+
+            if 0 <= nx < R and 0 <= ny < C and graph[nx][ny] != '#' and visit[nx][ny] == 0:
+                queue.append([nx, ny])
+                visit[nx][ny] = 1
+
+
+wolf, sheep = 0, 0
+
+for i in range(R):
+    for j in range(C):
+        if graph[i][j] != '#' and visit[i][j] == 0:
+            w, s = 0, 0
+            BFS(i, j)
+            if w >= s:
+                s = 0
+            else:
+                w = 0
+
+            wolf += w
+            sheep += s
+
+print(sheep, wolf)
 
 
