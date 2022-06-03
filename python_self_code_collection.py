@@ -519,3 +519,17 @@ for i in range(R):
 print(sheep, wolf)
 
 
+
+# 부분 문자열 구하기
+from sys import stdin
+
+S = stdin.readline().rstrip()
+words = set()
+
+for i in range(len(S)):
+    for j in range(i, len(S)):
+        temp = S[i:j + 1]
+        words.add(temp)
+
+print(words)
+print(len(words))
