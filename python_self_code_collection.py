@@ -533,3 +533,90 @@ for i in range(len(S)):
 
 print(words)
 print(len(words))
+
+
+
+
+# DP 문제 1 - 금쪽 상담
+def solution(start, end, price):
+    items = [(e, s, p) for e, s, p in zip(end, start, price)]
+    items.sort()
+
+    print(items)
+
+    dp = [0 for _ in range(max(end) + 1)]
+    for e, s, p in items:
+        for j in range(e, len(dp)):
+            dp[j] = max(dp[s] + p, dp[j])
+    
+    return dp[-1]
+    
+
+start = [1, 5, 10, 6, 5]
+end = [5, 6, 12, 9, 12]
+price = [10, 40, 30, 20, 50]
+
+print(solution(start, end, price))
+
+
+
+
+
+# DP 문제 2 - 삽질
+def solution(depth, n, blocks):
+    N = len(blocks[0])
+
+    dp = [[0 for _ in range(N)]
+          for _ in range(2)]
+
+    for i in range(N):
+        dp[0][i] = blocks[0][i]
+
+    for i in range(1, depth + 1):
+        for j in range(N):
+            if j == 0:
+                dp[i % 2][j] = min(dp[(i - 1) % 2][j:j + 2]) + blocks[i][j]
+            elif j == N - 1:
+                dp[i % 2][j] = min(dp[(i - 1) % 2][j - 1:j + 1]) + blocks[i][j]
+            else:
+                dp[i % 2][j] = min(dp[(i - 1) % 2][j - 1:j + 2]) + blocks[i][j]
+
+        print("dp:",dp)
+    return dp[depth % 2][n]
+
+depth = 3
+n = 3
+blocks = [[5, 6, 2, 6],
+          [1, 6, 4, 9],
+          [5, 6, 9, 4],
+          [55, 14, 21, 14]]
+
+print(solution(depth, n, blocks))
+
+
+
+# DP 문제 3 - 성 침입
+def solution(N, rewards):
+    dp = [0 for _ in range(N-1)]
+    dp[0] = rewards[0]
+    dp[1] = rewards[1]
+    for i in range(2, N-1):
+        dp[i] = max(dp[i-1], dp[i-2] + rewards[i])
+    res = dp[-1]
+
+    print("dp1:",dp)
+    
+    dp = [0 for _ in range(N)]
+    dp[0] = 0
+    dp[1] = rewards[1]
+    for i in range(2, N):
+        dp[i] = max(dp[i-1], dp[i-2] + rewards[i])
+
+    print("dp2:", dp)
+
+    return max(res, dp[-1])
+    
+
+N = 6
+rewards = [5, 10, 5, 7, 5, 9]
+print(solution(N, rewards))
