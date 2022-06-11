@@ -723,3 +723,54 @@ for i in range(m):
     else:
         print(0)
 
+        
+        
+        
+ # 팰린드롬 찾기
+from sys import stdin
+
+s = stdin.readline().rstrip()
+result = []
+
+
+def expand1(s, left, right):
+    while left >= 0 and right < len(s) and s[left] == s[right]:
+        left -= 1
+        right += 1
+    return s[left + 1:right]
+
+
+def expand2(s, left, right):
+    while left >= 0 and right < len(s) and s[left] == s[right]:
+        left -= 1
+        right += 1
+    return s[left + 1:right]
+
+
+for i in range(len(s)):
+    result.append(len(expand1(s, i, i)))
+    result.append(len(expand2(s, i, i + 1)))
+
+print(max(result))
+
+
+
+
+# 약수 구하기
+def getMyDivisor(n):
+    divisorsList = []
+
+    for i in range(1, int(n ** (1 / 2)) + 1):
+        if n % i == 0:
+            if i != 1:
+                divisorsList.append(i)
+            if (i ** 2) != n:
+                divisorsList.append(n // i)
+
+    return sorted(divisorsList)
+  
+  
+  
+  
+  
+  
