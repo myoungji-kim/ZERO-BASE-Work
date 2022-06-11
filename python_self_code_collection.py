@@ -695,3 +695,31 @@ while move < n:
 
 for g in graph:
     print("".join(g))
+    
+    
+    
+# 분할 탐색
+from sys import stdin
+
+n = int(stdin.readline())
+nums1 = sorted(list(map(int, stdin.readline().split())))
+m = int(stdin.readline())
+nums2 = list(map(int, stdin.readline().split()))
+
+for i in range(m):
+    left, right = 0, n - 1
+    while left + 1 < right:
+        mid = (left + right) // 2
+        if nums2[i] > nums1[mid]:
+            left = mid
+        elif nums2[i] < nums1[mid]:
+            right = mid
+        else:
+            isIn = True
+            break
+
+    if nums2[i] in nums1[left:right + 1]:
+        print(1)
+    else:
+        print(0)
+
