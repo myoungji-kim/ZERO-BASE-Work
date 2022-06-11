@@ -22,6 +22,11 @@ print(sorted(array, key=my_key))
 print(sorted(array, key=lambda x:x[1]))
 
 
+# 리스트 길이 순으로 정렬하기
+words = ['aaaa', 'aaa', 'aa', 'a', 'b', 'bb', 'bbb']
+words.sort(key=lambda x: len(x))
+
+
 
 # 순열
 from itertools import permutations
@@ -620,3 +625,19 @@ def solution(N, rewards):
 N = 6
 rewards = [5, 10, 5, 7, 5, 9]
 print(solution(N, rewards))
+
+
+# 세 제곱의 합 공식
+(N * (N + 1) // 2) ** 2
+
+
+# 문자열에서 특정 문자가 들어있는 개수 세기
+from sys import stdin
+
+N = int(stdin.readline())
+count = 0
+
+for i in range(1, N + 1):
+    count += str(i).count('3')+str(i).count('6')+str(i).count('9')
+print(count)
+
