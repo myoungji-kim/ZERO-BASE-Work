@@ -641,3 +641,57 @@ for i in range(1, N + 1):
     count += str(i).count('3')+str(i).count('6')+str(i).count('9')
 print(count)
 
+
+
+# 빙글빙글 스네이크
+from sys import stdin
+
+n = int(stdin.readline())
+graph = [[' '] * n for i in range(n)]
+up, right, down, left = 0, n - 1, n - 1, -2  # 이동 범위
+x, y = 0, 0  # 현재 위치
+move = 0
+goUp, goDown, goRight, goLeft = False, False, True, False
+
+
+while move < n:
+    # 위로
+    if goUp:
+        for i in range(up, down):
+            graph[i][left] = '#'
+
+        down -= 2
+        goRight = True
+        goUp = False
+
+    # 아래로
+    elif goDown:
+        for i in range(up, down + 1):
+            graph[i][right] = '#'
+
+        up += 2
+        goLeft = True
+        goDown = False
+
+    # 오른쪽으로
+    elif goRight:
+        for i in range(left, right + 1):
+            graph[up][i] = '#'
+
+        left += 2
+        goDown = True
+        goRight = False
+
+    # 왼쪽으로
+    elif goLeft:
+        for i in range(left, right):
+            graph[down][i] = '#'
+
+        right -= 2
+        goUp = True
+        goLeft = False
+
+    move += 1
+
+for g in graph:
+    print("".join(g))
